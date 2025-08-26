@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Window));
             this.label_IP = new System.Windows.Forms.Label();
             this.textBox_IP = new System.Windows.Forms.TextBox();
             this.label_DataPackSize = new System.Windows.Forms.Label();
@@ -38,6 +39,8 @@
             this.textBox_Log = new System.Windows.Forms.TextBox();
             this.button_Start = new System.Windows.Forms.Button();
             this.button_Stop = new System.Windows.Forms.Button();
+            this.label_TotalDatapackSize = new System.Windows.Forms.Label();
+            this.label_Status = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_DatapackSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_DatapackSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Thread)).BeginInit();
@@ -167,11 +170,31 @@
             this.button_Stop.UseVisualStyleBackColor = true;
             this.button_Stop.Click += new System.EventHandler(this.button_Stop_Click);
             // 
+            // label_TotalDatapackSize
+            // 
+            this.label_TotalDatapackSize.Location = new System.Drawing.Point(334, 309);
+            this.label_TotalDatapackSize.Name = "label_TotalDatapackSize";
+            this.label_TotalDatapackSize.Size = new System.Drawing.Size(434, 31);
+            this.label_TotalDatapackSize.TabIndex = 11;
+            this.label_TotalDatapackSize.Text = "总发送量: 0MB";
+            this.label_TotalDatapackSize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label_Status
+            // 
+            this.label_Status.Location = new System.Drawing.Point(260, 68);
+            this.label_Status.Name = "label_Status";
+            this.label_Status.Size = new System.Drawing.Size(508, 26);
+            this.label_Status.TabIndex = 12;
+            this.label_Status.Text = "请求数: Unknown     请求成功: Unknown     请求失败: Unkwnon";
+            this.label_Status.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Main_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 352);
+            this.Controls.Add(this.label_Status);
+            this.Controls.Add(this.label_TotalDatapackSize);
             this.Controls.Add(this.button_Stop);
             this.Controls.Add(this.button_Start);
             this.Controls.Add(this.textBox_Log);
@@ -183,7 +206,8 @@
             this.Controls.Add(this.textBox_IP);
             this.Controls.Add(this.label_IP);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(796, 391);
             this.MinimumSize = new System.Drawing.Size(796, 391);
@@ -211,6 +235,8 @@
         private System.Windows.Forms.TextBox textBox_Log;
         private System.Windows.Forms.Button button_Start;
         private System.Windows.Forms.Button button_Stop;
+        private System.Windows.Forms.Label label_TotalDatapackSize;
+        private System.Windows.Forms.Label label_Status;
     }
 }
 

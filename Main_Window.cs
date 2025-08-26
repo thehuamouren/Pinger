@@ -90,6 +90,54 @@ namespace Pinger
             textBox_Log.AppendText($"{message}\r\n");
             textBox_Log.SelectionStart = textBox_Log.Text.Length;
             textBox_Log.ScrollToCaret();
+
+            if (message.Length >= 2 && message.Substring(0, 2) == "来自") 
+            {
+                TotalDatapackSize = TotalDatapackSize + (double)GlobalConfig.PingerConfig.DatapackSize / 1048576.0;
+                
+                ConnectSuccess++;
+                ConnectRequest++;
+            }
+
+            if (message.Length >= 4 && message.Substring(0, 4) == "请求超时")
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+            else if (message.Length >= 15 && message.Substring(0, 15) == "PING：传输失败。常见故障。")
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+            else if (message.Length >= 7 && message.Substring(0, 7) == "目标主机不可达") 
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+            else if (message.Length >= 7 && message.Substring(0, 7) == "目标网络不可达")
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+            else if (message.Length >= 4 && message.Substring(0, 4) == "传输失败")
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+            else if (message.Length >= 12 && message.Substring(0, 12) == "Ping 请求找不到主机")
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+            else if (message.Length >= 4 && message.Substring(0, 4) == "常规故障")
+            {
+                ConnectError++;
+                ConnectRequest++;
+            }
+
+
+            label_TotalDatapackSize.Text = $"总发送量: {Math.Round(TotalDatapackSize, 3)}MB";
+            label_Status.Text = $"请求数: {ConnectRequest}     请求成功: {ConnectSuccess}     请求失败: {ConnectError}";
         }
 
         //Json类=====================================================================================
@@ -117,8 +165,13 @@ namespace Pinger
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
         public static string ConfigPath = $"{RunPath}\\config.json";
-        public static string Version = "Indev 1.0.0.0";
+        public static string Version = "Release 1.0.0.0";
         public static Config GlobalConfig;
+        public static double TotalDatapackSize = 0;
+
+        public static double ConnectSuccess = 0;
+        public static double ConnectError = 0;
+        public static double ConnectRequest = 0;
         //==============================================================================================
         public Main_Window()
         {
